@@ -4,8 +4,8 @@ django-chatbot是chatbot-py的django封装版本，chatbot-py是中文聊天机�
 
 # 效果图
 这是集成到微信公众号后的效果图
-![效果图](https://github.com/lin423497786/django-chatbot/blob/master/result.jpg)
 ![效果图](https://github.com/lin423497786/django-chatbot/blob/master/result2.jpg)
+![效果图](https://github.com/lin423497786/django-chatbot/blob/master/result.jpg)
 
 # 快速开始
 **1. 安装**
