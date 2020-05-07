@@ -1,14 +1,33 @@
 # -*- coding:utf-8 -*-
 from rest_framework import serializers
 from chatbot.chatbot import ChatBot
-from django.conf import settings
+from chatbot.models import statement_table_name
+from django_redis import get_redis_connection
+from threading import Thread
 
 
-chatbot = ChatBot(
+cache = get_redis_connection("default")
+
+
+class DjangoChatBot(ChatBot):
+    def initialize(self):
+        # Static question and answer pairs are saved to the cache
+        def load():
+            self.logger.info('start loading static qa pairs to the cache')
+            for statement in self.storage.filter(statement_table_name, type=0):
+                if not cache.hexists('static_qa', statement.question):
+                    cache.hset('static_qa', statement.question, statement.answer)
+            self.logger.info('loading data is complete')
+
+        t = Thread(target=load)
+        t.start()
+
+
+chatbot = DjangoChatBot(
     'django',
     # storage={
     #     'import_path': 'chatbot.storage.SQLStorage',
-    #     'database_uri': 'mysql+pymysql://root:123456@127.0.0.1:3306/chatbot'
+    #     'database_uri': 'mysql+pymysql://root:123456@10.1.196.29:3306/chatbot'
     # },
 )
 
@@ -32,3 +51,4 @@ class LearnSerializer(serializers.Serializer):
         if value not in (0, 1):
             raise serializers.ValidationError('the type must be 0 or 1')
         return value
+
