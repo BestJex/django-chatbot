@@ -14,13 +14,17 @@ git clone https://github.com/lin423497786/django-chatbot.git
 cd django-chatbot
 pip install -r requirements.txt
 ```
+**2. redis配置**
+```
+修改django_chatbot/settings.py文件第139行的redis服务器地址
+```
 
-**2. 启动django服务**
+**3. 启动django服务**
 ```
 python manage.py runserver 80
 ```
 
-**3. 静态语料学习**
+**4. 静态语料学习**
 
 静态语料：不需要调用函数或接口的语料
 ```
@@ -41,7 +45,7 @@ headers = {
 requests.post('http://127.0.0.1/api/chatbot/learn/', json=post_data, headers=headers)
 ```
 
-**4. 动态语料学习**
+**5. 动态语料学习**
 
 动态语料：需要调用函数或接口的语料
 这里以天气查询为例子，首先先定义一个函数，这里使用chatbot.ext.integrate_weather_gaode.get_weather函数
@@ -64,7 +68,7 @@ headers = {
 # post
 requests.post('http://127.0.0.1/api/chatbot/learn/', json=post_data, headers=headers)
 ```
-**5. 提问**
+**6. 提问**
 
 学习完后就可以向机器人提出问题， 这里以步骤4学习的“天气查询”进行提问，因为“天气查询”调用的是chatbot.ext.integrate_weather_gaode.get_weather
 函数，该函数有2个参数，程序会一一识别出来，并一个个询问，当所有参数都询问完后程序就会调用该函数，将该函数的返回值作为回复，如下所示。
@@ -88,4 +92,19 @@ print(response.text)
 ```
 
 
-# 与我联系
+# 微信公众号
+**1. 部署**
+```
+部署机器人至云服务器上, 如果没有云服务器大家又想测试则推荐用内网穿透工具
+```
+**2. 登录微信公众平台修改基本配置**
+```
+登录微信公众平台 ->  开发 -> 基本配置
+```
+![公众号配置](https://github.com/lin423497786/django-chatbot/blob/master/公众号配置.jpg)
+
+
+
+
+
+
