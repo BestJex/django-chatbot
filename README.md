@@ -93,7 +93,7 @@ print(response.text)
 
 
 # 微信公众号
-**1. 登录微信公众平台修改基本配置**
+**1. 部署**
 ```
 部署机器人至云服务器上, 如果没有云服务器大家又想测试则推荐用内网穿透工具
 ```
@@ -102,5 +102,9 @@ print(response.text)
 登录微信公众平台 ->  开发 -> 基本配置
 ```
 ![公众号配置](https://github.com/lin423497786/django-chatbot/blob/master/公众号配置.jpg)
+
+
+
+
 
 
