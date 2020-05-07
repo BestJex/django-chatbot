@@ -101,7 +101,7 @@ print(response.text)
 ```
 登录微信公众平台 ->  开发 -> 基本配置
 ```
-![公众号配置](https://github.com/lin423497786/django-chatbot/blob/master/公众号配置.jpg)
+![公众号配置](https://github.com/lin423497786/django-chatbot/blob/master/wechat_config.png)
 
 
 
